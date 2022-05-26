@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@import "./reset.scss";
+@import "./mixin.scss";
+
+button{
+    border:0; background: 0;
+    &.-default{
+        background: $BRAND_COLOR; 
+        color:#fff;
+        border-radius: 5px;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+    }
+    &.-line{
+        display: inline;
+        text-decoration: underline;
+        color:$COLOR_DARKGRAY
+    }
+} 
