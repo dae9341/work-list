@@ -12,6 +12,19 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <!-- <a href="#aaa" onclick="aa(event);">aaa</a> -->
+    <!-- <a href="#bbb" onclick="return bb();">bbb</a> -->
+    <script>
+      function aa(e){
+        e.preventDefault();
+        console.log('aa');
+      }
+
+      function bb(){
+        console.log('bb');
+        return false;
+      }
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
