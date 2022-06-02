@@ -1,34 +1,30 @@
 <template>
     <div class="loginForm">
-        <button class="loginForm__button" v-on:click="login();">Google 계정으로 로그인</button>
-        <button class="loginForm__button" v-on:click="logout();">로그아웃</button>
+        <button class="loginForm__button -login" v-on:click="login();">Google 계정으로 로그인</button>
+        <!-- <button class="loginForm__button -logout" v-on:click="logout();">로그아웃</button> -->
     </div>
 </template>
 
 <script>
-    import { getAuth, GoogleAuthProvider,signInWithRedirect,onAuthStateChanged } from "firebase/auth";
+    import { getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged } from "firebase/auth";
     
     export default {
         name:'Login',
         created() { 
-            this.create();
         },
         mounted:function(){
-
-            // onAuthStateChanged(auth, (user) => {
-            //     if (user) {
-            //         const uid = user.uid;
-            //         this.isLogin = true;
-            //     } else {
-            //         this.false = true;
-            //     }
-            //     console.log(this.isLogin);
-            // });
-
+            this.loginCheck();
         },
         methods:{
-            create: function(){
-                console.log('Login created')
+            loginCheck: function(){ 
+                const auth = getAuth();
+                onAuthStateChanged(auth,(user)=>{
+                    if(user){
+                        console.log(user);
+                    }else{
+                        console.log("없음")
+                    }
+                })
             },
             login:function(){
                 const provider = new GoogleAuthProvider();
