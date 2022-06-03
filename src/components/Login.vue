@@ -1,41 +1,56 @@
 <template>
     <div class="loginForm">
-        <button class="loginForm__button -login" v-on:click="login();">Google 계정으로 로그인</button>
-        <!-- <button class="loginForm__button -logout" v-on:click="logout();">로그아웃</button> -->
+        <button v-if="!isLogin" class="loginForm__button -login" v-on:click="login();">Google 계정으로 로그인</button>
+        <button v-if="isLogin" class="loginForm__button -logout" v-on:click="logout();">로그아웃</button>
     </div>
 </template>
 
 <script>
-    import { getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged } from "firebase/auth";
+    import { getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged, signOut } from "firebase/auth";
     
     export default {
         name:'Login',
         created() { 
         },
         mounted:function(){
-            this.loginCheck();
+            this.getUserInfo();
+        },
+        data(){
+            return {
+                isLogin:false
+            }
         },
         methods:{
-            loginCheck: function(){ 
+            getUserInfo: function(){ 
                 const auth = getAuth();
                 onAuthStateChanged(auth,(user)=>{
                     if(user){
-                        console.log(user);
+                        console.log("로그인");
+                        this.$emit('userInfo',user);
+                        this.isLogin = true;
                     }else{
-                        console.log("없음")
+                        console.log("비로그인")
+                        this.$emit('userInfo',user);
+                        this.isLogin = false;
                     }
                 })
             },
             login:function(){
+                const auth = getAuth();
                 const provider = new GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-                const auth = getAuth();
 
                 signInWithRedirect(auth, provider);
             },
 
             logout:function(){
+                const auth = getAuth();
+                signOut(auth).then(()=>{
+                    window.location.reload();
+                }).catch((error)=>{
 
+                })
+                
             }
         }
     }

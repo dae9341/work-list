@@ -2,8 +2,7 @@
     <header class="header">
         <h1>Hello ! My Work</h1>
         <div>
-            <i>Me</i>
-            <button class="-line">로그아웃</button>
+            <i v-if="propIsLogin">{{this.propUser.displayName}}</i>
         </div>
         
     </header>
@@ -11,7 +10,21 @@
 
 <script>
     export default { 
-        name:'Header'
+        name:'Header',
+        props:{
+            propIsLogin:Boolean,
+            propUser:Object
+        },
+        methods:{
+
+        },
+        mounted:function(){    
+            console.log(this.propIsLogin, this.propUser) 
+            console.log(this.propUser.displayName)  
+        }, 
+        updated:function(){
+            // console.log(this.propIsLogin, this.propUser)
+        }
     }
 </script>
 
