@@ -2,9 +2,16 @@
   <div id="app">
     <Header :key="HeaderKey" :prop-is-login="propIsLogin" :prop-user="propUser"></Header>
     <Login @userInfo="getUserInfo"></Login>
-    <WorkList v-if="propIsLogin" :key="WorkListKey" :prop-is-login="propIsLogin" :prop-user="propUser"></WorkList>
+    
 
     <Footer :prop-is-login="propIsLogin"></Footer>
+
+    <WorkList v-if="propIsLogin" :key="WorkListKey" :prop-is-login="propIsLogin" :prop-user="propUser"></WorkList>
+    <WorkWrite></WorkWrite>
+    <router-link to="/main">
+    </router-link>
+    <router-link to="/work">
+    </router-link>
   </div>
 </template>
 
