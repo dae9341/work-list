@@ -3,15 +3,15 @@
     <Header :key="HeaderKey" :prop-is-login="propIsLogin" :prop-user="propUser"></Header>
     <Login @userInfo="getUserInfo"></Login>
     
+    <router-link to="/main"></router-link>
+    <router-link to="/work"></router-link>
+    <router-view></router-view>
+
 
     <Footer :prop-is-login="propIsLogin"></Footer>
 
-    <WorkList v-if="propIsLogin" :key="WorkListKey" :prop-is-login="propIsLogin" :prop-user="propUser"></WorkList>
-    <WorkWrite></WorkWrite>
-    <router-link to="/main">
-    </router-link>
-    <router-link to="/work">
-    </router-link>
+    <!-- <WorkList v-if="propIsLogin"></WorkList> -->
+    <!-- <WorkWrite></WorkWrite> -->
   </div>
 </template>
 

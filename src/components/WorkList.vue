@@ -26,6 +26,7 @@
 
         },
         mounted:function(){
+            console.log("isLogin::",this.propIsLogin)
             // console.log("list::",this.list)
         }
     }

@@ -18,3 +18,58 @@ button{
         color:$COLOR_DARKGRAY
     }
 } 
+
+textarea{
+    &.textArea{
+        width: 100%;
+        border:1px solid $COLOR_LIGHTGRAY;
+        padding:10px;
+    }
+
+}
+
+input{
+    &[type=text]{
+        &.inputText{
+            width: 100%;
+            border:1px solid $COLOR_LIGHTGRAY;
+            height:30px;
+            padding:0 10px;
+        }    
+    }
+    &[type=date]{
+        &.inputDate{
+            width: 100%;
+            border:1px solid $COLOR_LIGHTGRAY;
+            height:30px;
+            padding:0 10px;
+        }    
+    }
+}
+
+.radioButton{
+    &__input{ display: block; opacity: 0; width: 0; height: 0; line-height: 0;
+        &:checked{
+            + .radioButton__text{
+                &:after{
+                    content:'✔'; background-color: rgba(0,0,0,0.4); width: 100%; height: 100%; display: block;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 25px;
+                    border-radius: 50%;  position: absolute; top:0; left: 0;
+                }
+            }
+        }
+    }
+    &__text{
+        position: relative;
+        display: flex; align-items: center; justify-content: center;
+        color:#fff;
+        background-color: green;
+        border-radius: 50%;
+        width: 44px; height:44px; 
+        letter-spacing: -0.1em;
+    }
+}

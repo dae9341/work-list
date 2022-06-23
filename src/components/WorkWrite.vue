@@ -1,6 +1,72 @@
 <template>
-    <div>
-        
+    <div class="workWrite">
+        <ul>
+            <li>
+                <span class="workWrite__title">카테고리</span>
+                <div class="workWrite__content -category">
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">집안일</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">쇼핑</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">쇼핑</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">쇼핑</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">쇼핑</span>
+                        </label> 
+                    </span>
+                </div>
+            </li>
+            <li>
+                <span class="workWrite__title">할 일</span>
+                <div class="workWrite__content">
+                    <input type="text" class="inputText"/>
+                </div>
+            </li>
+            <li>
+                <span class="workWrite__title">시작일</span>
+                <div class="workWrite__content">
+                    <input type="date" class="inputDate">
+                </div>
+            </li>
+            <li>
+                <span class="workWrite__title">종료일</span>
+                <div class="workWrite__content">
+                    <input type="date" class="inputDate">
+                </div>
+            </li>
+            <li>
+                <span class="workWrite__title">메모</span>
+                <div class="workWrite__content">
+                    <textarea class="textArea" name="" placeholder="메모를 입력하세요" id="" cols="30" rows="10"></textarea>
+                </div>
+            </li>
+        </ul>
+
+
+        <div class="workWrite__btns">
+            <a class="btn" href="/main">취소</a>
+            <a class="btn" href="#">등록</a>
+        </div>
     </div>
 
 </template>
@@ -11,3 +77,21 @@
         name:'WorkWrite'
     }
 </script>
+<style lang="scss" scoped>
+    .workWrite{ margin-top:25px;
+        ul {
+            display: flex; flex-direction: column; padding:0 20px; gap:10px;
+            li{display: flex; align-items: center; justify-content: space-between; 
+                .workWrite__title{display: block; width: 100px; }
+            }
+
+        }
+        &__content{
+            flex:1;
+            &.-category{
+            display: flex; align-items: center; flex-wrap: wrap;
+            gap:5px;
+        }
+        }
+    }
+</style>
