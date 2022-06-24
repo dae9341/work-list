@@ -18,6 +18,25 @@ button{
         color:$COLOR_DARKGRAY
     }
 } 
+a.btn{
+    border:0; background: 0;
+    background: $BRAND_COLOR; 
+    color:#fff;
+    border-radius: 5px;
+    padding: 2px 8px;
+    width: 100px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.-gray{
+        background: $COLOR_GRAY; 
+    }
+    &.-borderBrand{
+        background: #fff; color:$BRAND_COLOR;
+        border:1px solid $BRAND_COLOR;
+    }
+    
+}
 
 textarea{
     &.textArea{

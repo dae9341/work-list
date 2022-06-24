@@ -19,19 +19,25 @@
                     <span class="radioButton">
                         <label>
                             <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
-                            <span class="radioButton__text">쇼핑</span>
+                            <span class="radioButton__text">운동</span>
                         </label> 
                     </span>
                     <span class="radioButton">
                         <label>
                             <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
-                            <span class="radioButton__text">쇼핑</span>
+                            <span class="radioButton__text">업무</span>
                         </label> 
                     </span>
                     <span class="radioButton">
                         <label>
                             <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
-                            <span class="radioButton__text">쇼핑</span>
+                            <span class="radioButton__text">스터디</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <span class="radioButton__text">기타</span>
                         </label> 
                     </span>
                 </div>
@@ -64,8 +70,8 @@
 
 
         <div class="workWrite__btns">
-            <a class="btn" href="/main">취소</a>
-            <a class="btn" href="#">등록</a>
+            <a class="btn -gray" href="/main">취소</a>
+            <a class="btn -borderBrand" href="#">등록</a>
         </div>
     </div>
 
@@ -89,9 +95,16 @@
         &__content{
             flex:1;
             &.-category{
-            display: flex; align-items: center; flex-wrap: wrap;
-            gap:5px;
+                display: flex; align-items: center; flex-wrap: wrap;
+                gap:5px;
+            }
         }
+        &__btns{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            gap:10px;
         }
     }
 </style>

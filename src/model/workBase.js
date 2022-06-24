@@ -45,6 +45,11 @@ function writeData(id,listData){
   }
 }
 
+function settingKey(){
+  var date = new Date();
+  
+}
+
 // DB데이터 삭제
 function deleteData(){
 
