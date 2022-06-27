@@ -2,6 +2,7 @@
 @import "./reset.scss";
 @import "./mixin.scss";
 
+// 버튼
 button{
     border:0; background: 0;
     &.-default{
@@ -18,6 +19,8 @@ button{
         color:$COLOR_DARKGRAY
     }
 } 
+
+// a링크 버튼
 a.btn{
     border:0; background: 0;
     background: $BRAND_COLOR; 
@@ -38,6 +41,7 @@ a.btn{
     
 }
 
+// form
 textarea{
     &.textArea{
         width: 100%;
@@ -90,5 +94,29 @@ input{
         border-radius: 50%;
         width: 44px; height:44px; 
         letter-spacing: -0.1em;
+    }
+}
+
+//레이어
+.layer{
+    width: 100%; height:100%;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    &__dimmed{
+        width: 100%; height: 100%;
+    }
+    &__wrapper{
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+    }
+    &__content{
+        &.-loading{
+            color:$BRAND_COLOR;
+            font-weight: bold; font-size:22px; font-style: italic;
+
+        }
     }
 }

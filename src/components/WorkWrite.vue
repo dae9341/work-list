@@ -6,7 +6,7 @@
                 <div class="workWrite__content -category">
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="homework"/> 
                             <span class="radioButton__text">집안일</span>
                         </label> 
                     </span>
@@ -18,25 +18,25 @@
                     </span>
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="exer"/> 
                             <span class="radioButton__text">운동</span>
                         </label> 
                     </span>
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="work"/> 
                             <span class="radioButton__text">업무</span>
                         </label> 
                     </span>
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="study"/> 
                             <span class="radioButton__text">스터디</span>
                         </label> 
                     </span>
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="etc"/> 
                             <span class="radioButton__text">기타</span>
                         </label> 
                     </span>
@@ -71,7 +71,7 @@
 
         <div class="workWrite__btns">
             <a class="btn -gray" href="/main">취소</a>
-            <a class="btn -borderBrand" href="#">등록</a>
+            <a class="btn -borderBrand" href="#" v-on:click="writeWork()">등록</a>
         </div>
     </div>
 
@@ -80,7 +80,17 @@
 <script>
     import WorkBase from './../model/workBase.js'
     export default {
-        name:'WorkWrite'
+        name:'WorkWrite',
+
+        methods:{
+            writeWork:function(){
+                console.log(document.querySelector('input[name="categorySelect"]:checked').value);
+                 
+            }
+        },
+        mounted:function(){
+            WorkBase.settingKey();
+        }
     }
 </script>
 <style lang="scss" scoped>

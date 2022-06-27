@@ -21,6 +21,7 @@ import Login from './components/Login.vue'
 import WorkList from './components/WorkList.vue'
 import WorkWrite from './components/WorkWrite.vue'
 import Footer from './components/Footer.vue'
+import Ui from './assets/js/ui.js'
 
 export default {
   name: 'App',
@@ -57,10 +58,10 @@ export default {
         this.forceRerender();
     }
   },
-
+  created:function(){
+  },
   mounted:function(){
     // console.log('userInfo:::',this.userItem.user)
-
   }
 }
 

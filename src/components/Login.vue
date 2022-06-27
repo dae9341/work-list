@@ -1,17 +1,16 @@
 <template>
     <div class="loginForm">
-        <button v-if="!isLogin" class="loginForm__button" v-on:click="login();">Google 계정으로 로그인</button>
-        <button v-if="isLogin" class="-default" v-on:click="logout();">로그아웃</button>
+        <button v-if="!isLogin" class="loginForm__button loginForm__login" v-on:click="login();">Google 계정으로 로그인</button>
+        <button v-if="isLogin" class="loginForm__logout -default" v-on:click="logout();">로그아웃</button>
     </div>
 </template>
 
 <script>
     import { getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged, signOut } from "firebase/auth";
+    import Ui from './../assets/js/ui.js'
     
     export default {
         name:'Login',
-        created() { 
-        },
         mounted:function(){
             this.getUserInfo();
         },
@@ -65,8 +64,13 @@
             &:first-child{margin-top: 0;}
         }
         &.-login{
+            .loginForm__logout{display: block; }
             flex-direction: row; margin-top: 5px;justify-content: flex-end; height:auto;
         }
+        &.-nonelogin{
+            .loginForm__login{display: block; }
+        }
+        >button{display: none;}
 
     }
 
