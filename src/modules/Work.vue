@@ -1,5 +1,5 @@
 <template>
-    <div class="work">
+    <div class="work" v-bind:data-key="this.itemKey">
         <div class="work__head">
             <div class="work__head__category">
                 {{this.itemValue.category}}
@@ -18,14 +18,13 @@
     </div>
 </template>
 <script>
-export default {
+export default { 
     name:'work',
     props:{
         itemKey:String,
         itemValue:Object
     },
     mounted:function(){
-        console.log("listItem:::::",this.listItem)
     }
 }
 </script>

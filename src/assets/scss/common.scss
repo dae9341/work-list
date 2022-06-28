@@ -58,6 +58,9 @@ input{
             border:1px solid $COLOR_LIGHTGRAY;
             height:30px;
             padding:0 10px;
+        }
+        &.-error{
+            border:1px solid red;
         }    
     }
     &[type=date]{
@@ -67,6 +70,9 @@ input{
             height:30px;
             padding:0 10px;
         }    
+        &.-error{
+            border:1px solid red;
+        }  
     }
 }
 

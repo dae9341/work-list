@@ -36,7 +36,7 @@
                     </span>
                     <span class="radioButton">
                         <label>
-                            <input class="radioButton__input" type="radio" name="categorySelect" value="etc"/> 
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="etc" checked/> 
                             <span class="radioButton__text">기타</span>
                         </label> 
                     </span>
@@ -45,25 +45,25 @@
             <li>
                 <span class="workWrite__title">할 일</span>
                 <div class="workWrite__content">
-                    <input type="text" class="inputText"/>
+                    <input type="text" class="inputText" id="workWriteTitle"/>
                 </div>
             </li>
             <li>
                 <span class="workWrite__title">시작일</span>
                 <div class="workWrite__content">
-                    <input type="date" class="inputDate">
+                    <input type="date" class="inputDate" id="workWriteStartDate">
                 </div>
             </li>
             <li>
                 <span class="workWrite__title">종료일</span>
                 <div class="workWrite__content">
-                    <input type="date" class="inputDate">
+                    <input type="date" class="inputDate" id="workWriteEndDate">
                 </div>
             </li>
             <li>
                 <span class="workWrite__title">메모</span>
                 <div class="workWrite__content">
-                    <textarea class="textArea" name="" placeholder="메모를 입력하세요" id="" cols="30" rows="10"></textarea>
+                    <textarea class="textArea" name="" placeholder="메모를 입력하세요" id="workWriteMemo" cols="30" rows="10"></textarea>
                 </div>
             </li>
         </ul>
@@ -83,13 +83,42 @@
         name:'WorkWrite',
 
         methods:{
-            writeWork:function(){
-                console.log(document.querySelector('input[name="categorySelect"]:checked').value);
-                 
+            writeWork:function(){ 
+                var category = document.querySelector('input[name="categorySelect"]:checked').value;
+                var memo = document.querySelector('#workWriteMemo').value;
+                var deadline = validate('#workWriteEndDate');
+                var startTime = validate('#workWriteStartDate');
+                var title = validate('#workWriteTitle');
+
+                function validate(id){
+                    var qid = document.querySelector(id);
+
+                    if(qid.value){
+                        return qid.value
+                    }else{
+                        qid.classList.add('-error');
+                    }
+                }
+
+
+                var data={
+                    category:category,
+                    deadline:deadline,
+                    isCompeted:false,
+                    memo:memo ? memo:"-",
+                    startTime:startTime,
+                    title:title
+                }
+
+                    WorkBase.writeList(WorkBase.key(),data);
+                    alert("등록완료!");
+                    this.$router.go(-1)
+
             }
+
         },
         mounted:function(){
-            WorkBase.settingKey();
+            // console.log("settingKey:::",WorkBase.key());
         }
     }
 </script>

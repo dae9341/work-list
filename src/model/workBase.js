@@ -35,14 +35,20 @@ function readData(){
 
 // DB데이터 쓰기
 function writeData(id,listData){
-  set(starCountRef+id),{
+  // var listDataArr = Object.values(listData);
+  // listDataArr.forEach(function(data){
+  //   console.log(data)
+  //   if(!data) return false
+  // })
+  
+  set(ref(db, 'todos/'+id),{
     category:listData.category,
     deadline:listData.deadline,
     isCompeted:listData.isCompeted,
     memo:listData.memo,
     startTime:listData.startTime,
     title:listData.title
-  }
+  })
 }
 
 function settingKey(){
@@ -80,7 +86,8 @@ function settingKey(){
   })
 
   realKey=zeroPlusDouble(realKey+1)
-  return realKey;
+  console.log(fulldate+realKey);
+  return fulldate+realKey;
 
 }
 
@@ -100,8 +107,8 @@ export default {
     deleteList:function(id){
 
     },
-    settingKey:function(){
-      settingKey()
+    key:function(){
+      return settingKey()
     }
 
 }
