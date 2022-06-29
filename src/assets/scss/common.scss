@@ -12,6 +12,10 @@ button{
         padding: 2px 8px;
         display: flex;
         align-items: center;
+        &.-subColor{
+            background-color: $BRAND_SUB_COLOR;
+            color:#333;
+        }
     }
     &.-line{
         display: inline;

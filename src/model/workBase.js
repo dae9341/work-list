@@ -15,23 +15,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const starCountRef = ref(db, 'todos/' );
-var todoList=[];
 
 // DB데이터 읽기
-function readData(){
+function readData(type){
+  var todoList=[];
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
-    for(var i in data){
-      todoList.push({
-        key:i,
-        value:data[i]
-      });
+    
+    if(type==="origin"){ //오리진데이터 형식
+      todoList=data;
+    }else{ // key, value형식
+      for(var i in data){
+        todoList.push({
+          key:i,
+          value:data[i]
+        });
+      }
+      
     }
 
   });
 
   return todoList
 }
+
 
 // DB데이터 쓰기
 function writeData(id,listData){
@@ -40,14 +47,19 @@ function writeData(id,listData){
   //   console.log(data)
   //   if(!data) return false
   // })
+  var dbData = readData("origin");
+  // console.log(dbData[id],id);
+  var list={};
+  list = Object.assign(dbData[id] ? dbData[id]:list,listData);
   
+
   set(ref(db, 'todos/'+id),{
-    category:listData.category,
-    deadline:listData.deadline,
-    isCompeted:listData.isCompeted,
-    memo:listData.memo,
-    startTime:listData.startTime,
-    title:listData.title
+    category:list.category,
+    deadline:list.deadline,
+    isCompeted:list.isCompeted,
+    memo:list.memo,
+    startTime:list.startTime,
+    title:list.title
   })
 }
 
@@ -96,6 +108,13 @@ function deleteData(id){
 
 }
 
+// DB데이터 업데이트
+function updateData(id,data){  
+  var dbData = readData("origin");
+  console.log(dbData[id],id);
+
+}
+
 
 export default {
     readList:function(){
@@ -106,6 +125,9 @@ export default {
     },
     deleteList:function(id){
 
+    },
+    updateList:function(id,data){
+      updateData(id,data)
     },
     key:function(){
       return settingKey()
