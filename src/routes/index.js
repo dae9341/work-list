@@ -17,7 +17,8 @@ const routesLink = [
     {
         path:'/write',
         name:'write', 
-        component:WorkWrite
+        component:WorkWrite,
+        props: true
     }
 ]
 

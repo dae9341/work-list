@@ -1,5 +1,5 @@
 <template>
-    <div class="work" v-bind:data-key="this.itemKey" v-on:click="showUpdateLayer(); return false;">
+    <div class="work" v-bind:data-key="this.itemKey" v-on:click="showUpdateLayer">
         <div class="work__complete" v-if="this.itemValue.isCompeted">
             <span>완료</span>
         </div>
@@ -19,11 +19,12 @@
             <div class="work__body__memo">{{this.itemValue.memo}}</div>
         </div>
 
-        <div class="work__update" v-on:click="hideUpdateLayer(); return false;">
-            <button class="-default -subColor" v-on:click="complete();">완료</button>
-            <button class="-default -subColor">수정</button>
-            <button class="-default -subColor">삭제</button> 
+        <div class="work__update" v-on:click.stop="hideUpdateLayer">
+            <button class="-default -subColor" v-on:click.stop="complete">완료</button>
+            <button class="-default -subColor" v-on:click.stop="gotoWork">수정</button>
+            <button class="-default -subColor" v-on:click.stop="deleteItem">삭제</button> 
         </div>
+
     </div>
 </template>
 <script>
@@ -39,13 +40,29 @@ export default {
             this.$el.querySelector('.work__update').classList.add('-show')
         },
         hideUpdateLayer:function(){
-            console.log(this.$el.querySelector('.work__update'))
+            // var vm = this;
+            // console.log(e);
+            // e.preventDefault(); 
             this.$el.querySelector('.work__update').classList.remove('-show');
         },
         complete:function(){
-           WorkBase.writeList(this.itemKey,{
-            isCompeted:true
-           });
+           if(window.confirm("정말 변경 하시겠습니까?")){
+                WorkBase.writeList(this.itemKey,{
+                    isCompeted:true
+                });
+           }else{
+            this.hideUpdateLayer();
+           }
+        },
+        gotoWork:function(){
+            this.$router.push({name: 'write', params: {itemKey: this.itemKey}})
+        },
+        deleteItem:function(){
+           if(window.confirm("정말 삭제 하시겠습니까?")){
+                WorkBase.deleteList(this.itemKey)
+           }else{
+            this.hideUpdateLayer();
+           }
         }
 
     },

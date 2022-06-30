@@ -17,7 +17,7 @@ const db = getDatabase();
 const starCountRef = ref(db, 'todos/' );
 
 // DB데이터 읽기
-function readData(type){
+function readData(type="default"){
   var todoList=[];
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
@@ -42,13 +42,7 @@ function readData(type){
 
 // DB데이터 쓰기
 function writeData(id,listData){
-  // var listDataArr = Object.values(listData);
-  // listDataArr.forEach(function(data){
-  //   console.log(data)
-  //   if(!data) return false
-  // })
   var dbData = readData("origin");
-  // console.log(dbData[id],id);
   var list={};
   list = Object.assign(dbData[id] ? dbData[id]:list,listData);
   
@@ -71,7 +65,7 @@ function settingKey(){
   var fulldate = yyyy+mm+dd;
   var tempData = readData();
   var realKey=0;
- 
+
   function zeroPlus(num){
     var realnum;
     realnum = num<10? '0'+num:num
@@ -86,26 +80,29 @@ function settingKey(){
     }
     return realnum;
   }
-
-  //같은날짜 갯수체크
-  tempData.forEach(function(value){
-    var thisDate = value.key.slice(0,8);
-    var thisRealKey = value.key.slice(8,11);
-
-    if(value.key.slice(0,8) == fulldate) {
-      realKey=parseInt(thisRealKey);
-    }
-  })
-
-  realKey=zeroPlusDouble(realKey+1)
-  console.log(fulldate+realKey);
-  return fulldate+realKey;
+  
+  console.log("tempData::::",tempData)
+    //같은날짜 갯수체크
+    tempData.forEach(function(value){
+      var thisDate = value.key.slice(0,8);
+      var thisRealKey = value.key.slice(8,11);
+  
+      if(thisDate == fulldate) {
+        realKey=parseInt(thisRealKey);
+      }
+      return realKey
+    })
+  
+    realKey=zeroPlusDouble(realKey+1)
+    console.log("test::::::::::",fulldate+realKey);
+    return fulldate+realKey;
 
 }
 
 // DB데이터 삭제
 function deleteData(id){
-
+  console.log(id)
+  set(ref(db, 'todos/'+id),null);
 }
 
 // DB데이터 업데이트
@@ -117,14 +114,14 @@ function updateData(id,data){
 
 
 export default {
-    readList:function(){
-      return readData();
+    readList:function(type){
+      return readData(type);
     },
     writeList:function(id,listData){
       writeData(id,listData)
     },
     deleteList:function(id){
-
+      deleteData(id)
     },
     updateList:function(id,data){
       updateData(id,data)

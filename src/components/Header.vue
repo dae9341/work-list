@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <h1>Hello ! My Work</h1>
+        <h1>MW</h1>
         <div>
             <i v-if="propIsLogin">{{this.propUser.displayName}}</i>
         </div>
@@ -31,7 +31,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
     header {
-        padding: 20px 10px 0;
+        padding: 10px;
         width: 100%;
         box-sizing: border-box;
         display: flex; align-items: center; justify-content: space-between;

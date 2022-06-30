@@ -81,44 +81,64 @@
     import WorkBase from './../model/workBase.js'
     export default {
         name:'WorkWrite',
+        props:{
+            itemKey:String
+        },
 
         methods:{
             writeWork:function(){ 
-                var category = document.querySelector('input[name="categorySelect"]:checked').value;
-                var memo = document.querySelector('#workWriteMemo').value;
-                var deadline = validate('#workWriteEndDate');
-                var startTime = validate('#workWriteStartDate');
-                var title = validate('#workWriteTitle');
+                // var category = document.querySelector('input[name="categorySelect"]:checked').value;
+                // var memo = document.querySelector('#workWriteMemo').value;
+                // var deadline = validate('#workWriteEndDate');
+                // var startTime = validate('#workWriteStartDate');
+                // var title = validate('#workWriteTitle');
+                var myKey = this.itemKey? this.itemKey:WorkBase.key();
+                console.log(myKey);
 
-                function validate(id){
-                    var qid = document.querySelector(id);
+                // function validate(id){
+                //     var qid = document.querySelector(id);
 
-                    if(qid.value){
-                        return qid.value
-                    }else{
-                        qid.classList.add('-error');
-                    }
-                }
+                //     if(qid.value){
+                //         return qid.value
+                //     }else{
+                //         qid.classList.add('-error');
+                //     }
+                // }
 
 
-                var data={
-                    category:category,
-                    deadline:deadline,
-                    isCompeted:false,
-                    memo:memo ? memo:"-",
-                    startTime:startTime,
-                    title:title
-                }
+                // var data={
+                //     category:category,
+                //     deadline:deadline,
+                //     isCompeted:false,
+                //     memo:memo ? memo:"-",
+                //     startTime:startTime,
+                //     title:title
+                // }
 
-                    WorkBase.writeList(WorkBase.key(),data);
-                    alert("등록완료!");
-                    this.$router.go(-1)
+                    // WorkBase.writeList(myKey,data);
+                    // alert("등록완료!");
+                    // this.$router.go(-1) 
 
+            },
+
+            updateWork:function(key){
+                if(!this.itemKey) return false;
+                var worklist = WorkBase.readList("origin");
+                this.setData("#workWriteMemo",worklist[key].memo);
+                this.setData("#workWriteEndDate",worklist[key].deadline);
+                this.setData("#workWriteStartDate",worklist[key].startTime);
+                this.setData("#workWriteTitle",worklist[key].title);
+                document.querySelector('input[name="categorySelect"][value='+ worklist[key].category +']').checked = true
+            },
+
+            setData: function(id,value){
+                document.querySelector(id).value = value;
             }
 
         },
         mounted:function(){
-            // console.log("settingKey:::",WorkBase.key());
+            // console.log(this.itemKey)
+            this.updateWork(this.itemKey);
         }
     }
 </script>

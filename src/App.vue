@@ -4,7 +4,7 @@
     <Login @userInfo="getUserInfo"></Login>
     
     <router-link to="/main"></router-link>
-    <router-link to="/work"></router-link>
+    <router-link to="/write"></router-link>
     <router-view></router-view>
 
 
