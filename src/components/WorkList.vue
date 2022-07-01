@@ -26,6 +26,7 @@
 
         },
         mounted:function(){
+            // console.log(WorkBase.readList())
             console.log("isLogin::",this.propIsLogin)
         }
     }

@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const starCountRef = ref(db, 'todos/' );
 
+
 // DB데이터 읽기
 function readData(type="default"){
   var todoList=[];
@@ -39,6 +40,30 @@ function readData(type="default"){
   return todoList
 }
 
+// DB데이터 읽기
+function readDataPromise(type="default"){
+
+  return new Promise(function(res){
+    var todoList=[];
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      
+      if(type==="origin"){ //오리진데이터 형식
+        todoList=data;
+      }else{ // key, value형식
+        for(var i in data){
+          todoList.push({
+            key:i,
+            value:data[i]
+          });
+        }
+        
+      }
+      res(todoList);
+    });
+  })
+}
+
 
 // DB데이터 쓰기
 function writeData(id,listData){
@@ -57,13 +82,13 @@ function writeData(id,listData){
   })
 }
 
-function settingKey(){
+async function settingKey(){
   var date = new Date();
   var yyyy=date.getFullYear();
   var mm = zeroPlus(date.getMonth()+1);
   var dd = zeroPlus(date.getDate());
   var fulldate = yyyy+mm+dd;
-  var tempData = readData();
+  var tempData = await readDataPromise(); 
   var realKey=0;
 
   function zeroPlus(num){
@@ -114,7 +139,7 @@ function updateData(id,data){
 
 
 export default {
-    readList:function(type){
+    readList: function(type){
       return readData(type);
     },
     writeList:function(id,listData){

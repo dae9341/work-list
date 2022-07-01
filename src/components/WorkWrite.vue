@@ -12,6 +12,12 @@
                     </span>
                     <span class="radioButton">
                         <label>
+                            <input class="radioButton__input" type="radio" name="categorySelect" value="schedule"/> 
+                            <span class="radioButton__text">일정</span>
+                        </label> 
+                    </span>
+                    <span class="radioButton">
+                        <label>
                             <input class="radioButton__input" type="radio" name="categorySelect" value="shopping"/> 
                             <span class="radioButton__text">쇼핑</span>
                         </label> 
@@ -86,38 +92,45 @@
         },
 
         methods:{
-            writeWork:function(){ 
-                // var category = document.querySelector('input[name="categorySelect"]:checked').value;
-                // var memo = document.querySelector('#workWriteMemo').value;
-                // var deadline = validate('#workWriteEndDate');
-                // var startTime = validate('#workWriteStartDate');
-                // var title = validate('#workWriteTitle');
-                var myKey = this.itemKey? this.itemKey:WorkBase.key();
+            writeWork:async function(){ 
+                var category = document.querySelector('input[name="categorySelect"]:checked').value;
+                var memo = document.querySelector('#workWriteMemo').value;
+                var deadline = validate('#workWriteEndDate');
+                var startTime = validate('#workWriteStartDate');
+                var title = validate('#workWriteTitle');
+                var myKey = this.itemKey? this.itemKey:await WorkBase.key();
                 console.log(myKey);
 
-                // function validate(id){
-                //     var qid = document.querySelector(id);
+                function validate(id){
+                    var qid = document.querySelector(id);
 
-                //     if(qid.value){
-                //         return qid.value
-                //     }else{
-                //         qid.classList.add('-error');
-                //     }
-                // }
+                    if(qid.value){
+                        return qid.value
+                    }else{
+                        qid.classList.add('-error');
+                    }
+                }
 
 
-                // var data={
-                //     category:category,
-                //     deadline:deadline,
-                //     isCompeted:false,
-                //     memo:memo ? memo:"-",
-                //     startTime:startTime,
-                //     title:title
-                // }
+                var data={
+                    category:category,
+                    deadline:deadline,
+                    isCompeted:false,
+                    memo:memo ? memo:"-",
+                    startTime:startTime,
+                    title:title
+                }
 
-                    // WorkBase.writeList(myKey,data);
-                    // alert("등록완료!");
-                    // this.$router.go(-1) 
+                // alert("등록완료!");
+
+                if(window.confirm("등록 하시겠습니까?")){
+                    WorkBase.writeList(myKey,data);
+                    this.$router.push('main');
+                    return false;
+                }else{
+                    return
+                }
+                
 
             },
 
