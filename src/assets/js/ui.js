@@ -20,6 +20,8 @@ var layer={
 };
 
 
+
+
 export default {
     uiLoading:function(){
         return layer.loading();

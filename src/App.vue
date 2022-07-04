@@ -8,7 +8,7 @@
     <router-view></router-view>
 
 
-    <Footer :prop-is-login="propIsLogin"></Footer>
+    <Footer :prop-is-login="propIsLogin" :prop-is-add-item="propIsAddItem"></Footer>
 
     <!-- <WorkList v-if="propIsLogin"></WorkList> -->
     <!-- <WorkWrite></WorkWrite> -->
@@ -36,6 +36,7 @@ export default {
     return {
       propUser:{},
       propIsLogin:false,
+      propIsAddItem:true,
       HeaderKey:0,
       WorkListKey:0
     }
@@ -51,6 +52,23 @@ export default {
     },
     forceRerender:function(){
       this.HeaderKey += 1;
+    },
+    scrollDirectionFn:function(){
+      var now,prev=0;
+      var scrollDirection;
+      document.addEventListener('scroll',function(){
+          now = window.scrollY;
+          
+          if(now > prev){
+              scrollDirection='down';
+              document.body.classList.remove('up');
+          }else{
+              scrollDirection='up';
+              document.body.classList.remove('down');
+          }
+          document.body.classList.add(scrollDirection);
+          prev= now;
+      });
     }
   },
   watch:{
@@ -61,7 +79,7 @@ export default {
   created:function(){
   },
   mounted:function(){
-    // console.log('userInfo:::',this.userItem.user)
+    this.scrollDirectionFn();
   }
 }
 
