@@ -7,7 +7,7 @@
         </ul>
     </div>
 </template>
-
+ 
 <script>
     import Work from './../modules/Work.vue'
     import WorkBase from './../model/workBase.js'

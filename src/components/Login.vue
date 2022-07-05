@@ -7,7 +7,6 @@
 
 <script>
     import { getAuth,GoogleAuthProvider,signInWithRedirect,onAuthStateChanged, signOut } from "firebase/auth";
-    import Ui from './../assets/js/ui.js'
     
     export default {
         name:'Login',

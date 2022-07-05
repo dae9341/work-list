@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import WorkList from './../components/WorkList';
 import WorkWrite from './../components/WorkWrite';
+import Footer from './../components/Footer';
 
 
 const routesLink = [
@@ -12,13 +13,20 @@ const routesLink = [
     {
         path:'/main',
         name:'main',
-        component:WorkList
+        components:{
+            default: WorkList,
+            footer: Footer
+        },
+        props: { default: true, footer: {propIsAddItem:true} }
     },
     {
         path:'/write',
         name:'write', 
-        component:WorkWrite,
-        props: true
+        components:{
+            default: WorkWrite,
+            footer: Footer
+        },
+        props: { default: true, footer: {propIsAddItem:false} }
     }
 ]
 

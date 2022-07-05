@@ -3,6 +3,7 @@
         <h1>MW</h1>
         <div>
             <i v-if="propIsLogin">{{this.propUser.displayName}}</i>
+            <button v-if="propIsLogin" class="logout -default" v-on:click="logout();">로그아웃</button>
         </div>
         
     </header>

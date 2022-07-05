@@ -3,12 +3,14 @@
     <Header :key="HeaderKey" :prop-is-login="propIsLogin" :prop-user="propUser"></Header>
     <Login @userInfo="getUserInfo"></Login>
     
-    <router-link to="/main"></router-link>
-    <router-link to="/write"></router-link>
-    <router-view></router-view>
+    <!-- <router-link to="/main">main</router-link> -->
+    <!-- <router-link to="/write">write</router-link> -->
+
+    <router-view v-if="propIsLogin"></router-view>
+    <router-view v-if="propIsLogin" name="footer"></router-view>
 
 
-    <Footer :prop-is-login="propIsLogin" :prop-is-add-item="propIsAddItem"></Footer>
+    <!-- <Footer :prop-is-login="propIsLogin" :prop-is-add-item="propIsAddItem"></Footer> -->
 
     <!-- <WorkList v-if="propIsLogin"></WorkList> -->
     <!-- <WorkWrite></WorkWrite> -->

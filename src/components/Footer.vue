@@ -17,6 +17,7 @@
 
         },
         mounted:function(){
+            console.log("[Footer mounted] "+ this.propIsLogin)
         }
     }
 </script>
