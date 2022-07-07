@@ -1,7 +1,7 @@
 <template>
     <div class="loginForm">
         <button v-if="!isLogin" class="loginForm__button loginForm__login" v-on:click="login();">Google 계정으로 로그인</button>
-        <button v-if="isLogin" class="loginForm__logout -default" v-on:click="logout();">로그아웃</button>
+        <!-- <button v-if="isLogin" class="loginForm__logout -default" v-on:click="logout();">로그아웃</button> -->
     </div>
 </template>
 

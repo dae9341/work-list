@@ -107,7 +107,7 @@ export default {
         border-radius: 5px;
         padding: 10px;
         &:after{
-            content:''; position: absolute; top:0; left:0; width: 100%; height:100%; display: block; border:1px solid #333; box-sizing: border-box; border-radius: inherit; z-index:1;
+            content:''; position: absolute; top:0; left:0; width: 100%; height:100%; display: block; border:1px solid #d1d1d1; box-sizing: border-box; border-radius: inherit; z-index:1;
         }
         &__head{ display: flex; align-items: center; gap:5px;
             &__title{}
